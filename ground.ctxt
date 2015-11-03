@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=ground
+comment0.text=\n\ Write\ a\ description\ of\ class\ ground\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=ground()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ ground\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=bouncable
+comment2.target=ground(boolean)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=world
+comment4.target=void\ addedToWorld(greenfoot.World)
+comment5.params=speed
+comment5.target=void\ scroll(int)
+comment6.params=speed
+comment6.target=void\ fall(int)
+numComments=7
