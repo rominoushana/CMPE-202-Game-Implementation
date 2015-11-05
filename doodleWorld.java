@@ -15,7 +15,7 @@ public class doodleWorld  extends World
     boolean scroll;
     boolean fall;
     boolean ended;
-    
+    GroundFactory groundFactory=new GroundFactory();
     int height = 0;
     int doodleX;
     /**
@@ -89,16 +89,15 @@ public class doodleWorld  extends World
     public void gamePlay()
     {
         addObject(new doodler(), getWidth()/2, 300);
-        addObject(new ground(false), 28,391);
-        addObject(new ground(false), 83,391);
-        addObject(new ground(false), 83+55,391);
-        addObject(new ground(false), 83+55+55,391);
-        addObject(new ground(false), 83+55+55+55,391);
-        addObject(new ground(false), 83+55+55+55+55,391);
+        addObject(groundFactory.getGround(0), 83,391);
+        addObject(groundFactory.getGround(0), 83+55,391);
+        addObject(groundFactory.getGround(0), 83+55+55,391);
+        addObject(groundFactory.getGround(0), 83+55+55+55,391);
+        addObject(groundFactory.getGround(0), 83+55+55+55+55,391);
         
-        addObject(new ground(), Greenfoot.getRandomNumber(300), 250);
-        addObject(new ground(), Greenfoot.getRandomNumber(300), 150);
-        addObject(new ground(), Greenfoot.getRandomNumber(300), 50);
+        addObject(groundFactory.getGround(0), Greenfoot.getRandomNumber(300), 250);
+        addObject(groundFactory.getGround(0), Greenfoot.getRandomNumber(300), 150);
+        addObject(groundFactory.getGround(0), Greenfoot.getRandomNumber(300), 50);
         addObject(new scoreKeeper(), 253,385);
     }
     

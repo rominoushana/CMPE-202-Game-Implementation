@@ -19,6 +19,14 @@ public class ground  extends Actor
     {
         hasBeenBounced=false;
     }
+    
+    public ground(String color)
+    {
+        if(color.equals("brown")){
+            setImage("flan.png");
+        }
+        hasBeenBounced=false;
+    }
 
     public ground(boolean bouncable)
     {

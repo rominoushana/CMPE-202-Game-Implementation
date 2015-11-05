@@ -14,6 +14,7 @@ public class doodler  extends Actor
     GreenfootImage left = new GreenfootImage("doodler.png");
     GreenfootImage right = new GreenfootImage("doodler.png");
     GreenfootImage shooting = new GreenfootImage("shooting.png");
+    GroundFactory groundFactory=new GroundFactory();
     ground Ground = new ground();
     int scrollSpeed;
     int hits = 0;
@@ -88,8 +89,8 @@ public class doodler  extends Actor
             {
                 Ground.hasBeenBounced=true;
                 {
-                    getWorld().addObject(new ground(), Greenfoot.getRandomNumber(300), 0);
-                    getWorld().addObject(new ground(), Greenfoot.getRandomNumber(300), 70);
+                    getWorld().addObject(groundFactory.getGround(Greenfoot.getRandomNumber(2)), Greenfoot.getRandomNumber(300), 0);
+                    getWorld().addObject(groundFactory.getGround(Greenfoot.getRandomNumber(2)), Greenfoot.getRandomNumber(20), 70);
                 }
             }
         }
