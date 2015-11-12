@@ -17,6 +17,8 @@ public class GroundFactory
       
              case 1:
                 return new ground("brown");
+             case 2:
+                 return new ground("spring");
                 
              default: 
                 return new ground();

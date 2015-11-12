@@ -23,7 +23,11 @@ public class ground  extends Actor
     public ground(String color)
     {
         if(color.equals("brown")){
-            setImage("flan.png");
+            setImage("breakable.png");
+        }
+        
+        if(color.equals("spring")){
+            setImage("spring.png");
         }
         hasBeenBounced=false;
     }

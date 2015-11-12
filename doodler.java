@@ -18,6 +18,12 @@ public class doodler  extends Actor
     ground Ground = new ground();
     int scrollSpeed;
     int hits = 0;
+    int x1;
+    int x2;
+    int y1,y2;
+    int groundChance;
+    
+    public static int groundCount=0;
     /**
      * Act - do whatever the doodler wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -88,14 +94,72 @@ public class doodler  extends Actor
             if(canMove & !Ground.hasBeenBounced)
             {
                 Ground.hasBeenBounced=true;
+                groundChance=Greenfoot.getRandomNumber(100);
+                y1=getRandomY(groundCount%350);
+                y2=y1+100;    
+                
+                //generate brown tiles between 0-30      
+                if(groundChance <=  30 )
                 {
-                    getWorld().addObject(groundFactory.getGround(Greenfoot.getRandomNumber(2)), Greenfoot.getRandomNumber(300), 0);
-                    getWorld().addObject(groundFactory.getGround(Greenfoot.getRandomNumber(2)), Greenfoot.getRandomNumber(20), 70);
+                    x1=Greenfoot.getRandomNumber(300);
+                    x2=getRandomX(x1);
+                    groundCount++;
+                    //1 => Brown tile
+                    getWorld().addObject(groundFactory.getGround(1), x1, y1);
+                   
+                    groundCount++;
+                    
+                    getWorld().addObject(groundFactory.getGround(0), x2, y2);
+                    
                 }
+                  
+                    //generate spring tile between 30-40 
+                else if(groundChance <= 40)   
+                    {
+                    x1=Greenfoot.getRandomNumber(300);
+                    x2=getRandomX(x1);
+                    groundCount++;
+                    //2 => spring Tile
+                    getWorld().addObject(groundFactory.getGround(2), x1, y1);
+                    groundCount++;
+                    getWorld().addObject(groundFactory.getGround(0), x2, y2);
+                    
+                }
+                else
+                    {
+                    x1=Greenfoot.getRandomNumber(300);
+                    x2=getRandomX(x1);    
+                      //generate green tiles   
+                    groundCount++;
+                    //0 => Green tile
+                    getWorld().addObject(groundFactory.getGround(0), x1, y1);
+  
+                    groundCount++;  
+                    getWorld().addObject(groundFactory.getGround(0), x2, y2);
+                    
+                    }    
+                    
             }
         }
     }
+    //avoid overlapping of tiles
+    public int getRandomX(int randomX1)
+    {
+        int randomX2=Greenfoot.getRandomNumber(300);
+        while(randomX2==randomX1)
+        {
+         randomX2= Greenfoot.getRandomNumber(300);
+        }
+        
+        return randomX2;
+       
+    }    
 
+    public int getRandomY(int count)
+    {
+        //System.out.println(((count*20)+count)/100);
+        return ((count*20)+count)/100; 
+    }    
     public void keys()
     {
         if(Greenfoot.isKeyDown("right"))
@@ -156,6 +220,7 @@ public class doodler  extends Actor
     {
         ((doodleWorld) getWorld()).fall = true;
         ((doodleWorld) getWorld()).scrollSpeed = (int) -ys;
+        groundCount=0;
     }
 
     public void scout()

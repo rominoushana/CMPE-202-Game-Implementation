@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class doodleWorld  extends World
 {
-    boolean bStarted, started = false;
+    boolean bStarted, started,help  = false;
     boolean once;
     int transparency = 0;
     int scrollSpeed;
@@ -18,6 +18,7 @@ public class doodleWorld  extends World
     GroundFactory groundFactory=new GroundFactory();
     int height = 0;
     int doodleX;
+    worldMemento memento;
     /**
      * Constructor for objects of class doodleWorld.
      * 
@@ -37,10 +38,12 @@ public class doodleWorld  extends World
         height = 0;
         fall = false;
         ended = false;
+        help=false;
     }
 
     public void act()
     {
+        MouseInfo mouse = Greenfoot.getMouseInfo();
         if(bStarted==false & Greenfoot.mouseMoved(this))
         {
             bStarted = true;
@@ -48,7 +51,7 @@ public class doodleWorld  extends World
 
         if(started==false & bStarted==true)
         {
-            MouseInfo mouse = Greenfoot.getMouseInfo();
+            //MouseInfo mouse = Greenfoot.getMouseInfo();
 
             if(Greenfoot.mouseClicked(this))
             {
@@ -56,6 +59,19 @@ public class doodleWorld  extends World
                 && mouse.getY()>=104 & mouse.getY()<=138)
                 {
                     started = true;
+                }
+            }
+            
+            if(Greenfoot.mouseClicked(this))
+            {
+                if(mouse.getX()>=45 & mouse.getX()<=150
+                && mouse.getY()>=170 & mouse.getY()<=200)
+                {
+                    bStarted = false;
+                    saveWorldToMemento(this);
+                    helpWorld help =new helpWorld(memento);
+                    //helpWorld help =new helpWorld(this);
+                    Greenfoot.setWorld(help);
                 }
             }
         }
@@ -66,16 +82,23 @@ public class doodleWorld  extends World
             once = false;
             setLevel(1);
         }
+        
         if(fall)
         {
             end();
         }
+    }
+    
+    public void saveWorldToMemento(doodleWorld doodleWorld)
+    {
+       memento= new worldMemento(doodleWorld);
     }
 
     public void cleanup()
     {
         removeObjects(getObjects(doodler.class));
         removeObjects(getObjects(ground.class));
+        //removeObjects(getObjects(worldMemento.class));
     }
 
     public void setLevel(int level)
@@ -89,6 +112,7 @@ public class doodleWorld  extends World
     public void gamePlay()
     {
         addObject(new doodler(), getWidth()/2, 300);
+        addObject(groundFactory.getGround(0), 28,391);
         addObject(groundFactory.getGround(0), 83,391);
         addObject(groundFactory.getGround(0), 83+55,391);
         addObject(groundFactory.getGround(0), 83+55+55,391);
@@ -116,5 +140,6 @@ public class doodleWorld  extends World
         height = 0;
         fall = false;
         ended = false;
+       
     }
 }
